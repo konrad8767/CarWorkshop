@@ -30,7 +30,7 @@ namespace CarWorkshop.Application.Mappings
                 .ForMember(dto => dto.PhoneNumber, opt => opt.MapFrom(src => src.ContactDetails.PhoneNumber))
                 .ForMember(dto => dto.PostalCode, opt => opt.MapFrom(src => src.ContactDetails.PostalCode))
                 .ForMember(dto => dto.Street, opt => opt.MapFrom(src => src.ContactDetails.Street))
-                .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => user != null && src.CreatedById == user.Id));
+                .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => user != null && (src.CreatedById == user.Id || user.IsInRole("Moderator"))));
 
             CreateMap<CarWorkshopDto, EditCarWorkshopCommand>();
         }

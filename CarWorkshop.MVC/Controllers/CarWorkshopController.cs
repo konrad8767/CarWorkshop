@@ -53,6 +53,7 @@ namespace CarWorkshop.MVC.Controllers
             return View(dto);
         }
 
+        [Authorize(Roles = "Moderator")]
         [Route("CarWorkshop/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName)
         {
@@ -69,6 +70,7 @@ namespace CarWorkshop.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Moderator")]
         [Route("CarWorkshop/{encodedName}/Edit")]
         public async Task<IActionResult> Edit(string encodedName, EditCarWorkshopCommand command)
         {
